@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>PatchGuard Live PAD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 20px; }
+    .row { display: flex; gap: 24px; flex-wrap: wrap; }
+    video, canvas { border: 1px solid #ddd; border-radius: 12px; }
+    .panel { min-width: 320px; }
+    .stat { font-size: 14px; color: #333; margin: 4px 0; }
+    .pill { display:inline-block; padding: 2px 8px; border-radius:999px; margin-left: 6px; }
+    .ok { background:#e6ffed; color:#0a7f2e; border:1px solid #9ae6b4; }
+    .bad { background:#ffe6e6; color:#9b2c2c; border:1px solid #feb2b2; }
+    .controls { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    button { padding: 8px 12px; border-radius: 8px; border: 1px solid #ccc; cursor: pointer; }
+    button.primary { background: #111827; color: #fff; border-color: #111827; }
+    select { padding: 6px 8px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h2>PatchGuard — Live Passive Liveness / Presentation-Attack Detection</h2>
+  <div class="row">
+    <div class="panel">
+      <video id="video" width="400" height="300" autoplay playsinline></video>
+      <div class="controls">
+        <button id="start" class="primary">Start Camera</button>
+        <button id="stop">Stop Camera</button>
+        <button id="snap">Analyze Frame</button>
+        <label>Operating Point:
+          <select id="op">
+            <option value="bpc5">BPCER ≤ 5% (prod)</option>
+            <option value="minacer">min-ACER (research)</option>
+          </select>
+        </label>
+        <label>Auto-loop <input type="checkbox" id="loop" checked /></label>
+      </div>
+    </div>
+
+    <div class="panel">
+      <canvas id="canvas" width="256" height="256"></canvas>
+      <div class="stat">Decision:
+        <span id="decision" class="pill">—</span>
+      </div>
+      <div class="stat">Attack probability: <span id="prob">—</span></div>
+      <div class="stat">Threshold: <span id="thr">—</span></div>
+      <div class="stat">Latency: <span id="lat">—</span> ms</div>
+      <div class="stat">Backend: <span id="health">checking…</span></div>
+    </div>
+  </div>
+
+  <script src="/static/main.js"></script>
+</body>
+</html>
