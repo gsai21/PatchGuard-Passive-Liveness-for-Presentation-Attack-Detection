@@ -1,4 +1,4 @@
-# PatchGuard-Passive-Liveness-for-Presentation-Attack-Detection
+# PatchGuard: Passive Liveness for Presentation Attack Detection (PAD)
 Designed and trained a custom 5M param MiniViT for presentation attack detection on SynthASpoof Dataset.
 
 # Steps to follow
